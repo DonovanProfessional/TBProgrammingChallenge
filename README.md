@@ -1,6 +1,6 @@
 # TBProgrammingChallenge
 
-##Dev Diary Part 1:
+## Dev Diary Part 1:
 In which I get something off the ground.
 
 TODO: Make everything Async, fix JS bugs on front end, mock more of the data abstraction layer out, implement authorization, create a pleasant UI, and sanitize I/O (mostly for XSS, but also for whatever DB ends up being used). Also todo: logging, middleware.
@@ -27,7 +27,7 @@ End result is my JQuery currently calls both APIs, both the intended one, and th
 
 ___
 
-##Dev Diary Part 2:
+## Dev Diary Part 2:
 Async where it matters, and browser specific brick walls.
 
 TODO: Make back-end API more async, make presentation nicer, mock more (less?) of the data abstraction out, fix IE duplicates, implement authorization, sanitize I/O, (mostly for XSS, look into CSRF with CORS controls). also todo: logging, middleware, queue for transaction status tracking on back end. 
