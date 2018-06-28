@@ -1,0 +1,13 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Sample.API/.vs
+/Sample.API/Sample.API/bin/Debug/netcoreapp2.0
+/Sample.API/Sample.API/obj
+/Sample.API/Sample.Domain/bin/Debug/netcoreapp2.0
+/Sample.API/Sample.Domain/obj
+/Sample.API/Sample.Infrastructure/bin/Debug/netcoreapp2.0
+/Sample.API/Sample.Infrastructure/obj
+/Sample.API/Sample.Presentation/bin/Debug/netcoreapp2.0
+/Sample.API/Sample.Presentation/obj

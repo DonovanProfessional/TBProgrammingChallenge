@@ -1,0 +1,33 @@
+﻿@page
+
+
+
+<div id="msgid">
+    <p> "... waiting for javascript to finish loading..."</p>
+</div>
+
+<div id="results">
+</div>
+
+
+@section Scripts{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#msgid").html("Click on this text to load from API");
+            $("#msgid").css("background-color", "blue");
+        });
+
+        $(document).ready(function () {
+            $("#msgid").click(function () {
+                $("#msgid").html("");
+                $("#results").html("Results will go here after they're retrieved.");
+
+                $.get("/jsendpoint/5", function (data) {
+                    $(".result").html(data);
+                    $("#results").html(data);
+                });
+            });
+        });
+    </script>
+}

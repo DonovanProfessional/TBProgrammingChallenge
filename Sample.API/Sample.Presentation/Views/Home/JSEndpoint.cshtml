@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewData["Title"] = "JS Endpoint";
+}
+@model APIResponseModel
+
+<div><br><br></div>
+
+<h2>Javascript Endpoint View</h2>
+
+<h3>Response from "phantom" API: @Model.APIResponse</h3>
+
+<div id="JQueryResponseArea">
+    <p> Click this text for Direct JQuery API </p>
+</div>
+
+<div id="JQueryResponseArea2">
+    <p> Direct JQuery API Responses should go here...</p>
+</div>
+
+
+@section Scripts{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#msgid").prop('onclick', null).off('click');
+            $("#JQueryResponseArea").click(function () {
+                for (var i = 0; i < 9; i++)
+                {
+                    $.get("http://localhost:49446/api/BusinessObjectsController/5", function (data) {
+                        $(".result").html(data);
+                        if (data === undefined || data.length < 3) {data = "Some error occured? Throttling, perhaps?"}
+                        $("<p>" + data + "</p>").appendTo("#JQueryResponseArea2");
+                        data = undefined;
+                    });
+                }
+            });
+        });
+
+    </script>
+}
+
