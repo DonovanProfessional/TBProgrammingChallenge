@@ -11,26 +11,17 @@ namespace Sample.Infrastructure
         
         int randomNumMin = 1000;
 
-        public string fetchData()
-        {
-            Console.WriteLine("Getting your data..."); // todo: logger
-            ProduceDataAsync();
-            Console.WriteLine("Returned from Async");
-            return dataFromDatabase;
-        }
-
         public async void ProduceDataAsync() 
         {
             //todo: implement timeout functionality
-            String result = await Task.Run(() => GetDataFromDataStream());
-            dataFromDatabase = result;
+            await Task.Run(() => GetDataFromDataStream());
         }
 
-        public async void ProduceDataAsync(String myQuery)
+        public async void ProduceDataAsync(String myQuery, int taskID)
         {
             //todo: implement timeout functionality
-            String result = await Task.Run(() => GetDataFromDataStream());
-            dataFromDatabase = result;
+            String results = await Task.Run(() => GetDataFromDataStream());
+            stickInDatabase(results);
         }
 
         public string ProduceDataSynchronous(String myQuery)
@@ -38,9 +29,11 @@ namespace Sample.Infrastructure
             return GetDataFromDataStream();
         }
 
+
+        // returns binary string of whatever data; used to represent results from external data stream.
         private string GetDataFromDataStream()
         {
-            // returns binary string of whatever data; used to represent results from external data stream.
+            
             Random rng = new Random();
             int extraTime = rng.Next(0, 1000);
             randomNumMin += extraTime;
@@ -48,5 +41,11 @@ namespace Sample.Infrastructure
             
             return "Hello World (from data layer). Waited: " + randomNumMin.ToString() + " ms" ;
         }
+
+        private void stickInDatabase(String results, int waitID)
+        {
+            // update database, put in results. 
+        }
+
     }
 }

@@ -14,8 +14,6 @@ namespace Sample.API.Controllers
     [Route("api/BusinessObjectsController")]
     public class BusinessObjectsController : Controller, ICRUDWebApi
     {
-
-
         // GET api/BusinessObjectsController/5
         [HttpGet("{id}")]
         public string Get(int id)
@@ -29,13 +27,31 @@ namespace Sample.API.Controllers
 
             fetcher.fetchData(new SampleBusinessObject());
             
-
+            
             myObject = fetcher.ExportedValue;
             Console.WriteLine("Returning the following to a caller: " + myObject);
 
             return myObject;
         }
 
+        [HttpGet("/async/")]
+        public string FetchDataAsync(int id)
+        {
+            int waitID = -1;
+            // await with timeout
+            MockDataWrapper fetcher = new MockDataWrapper();
+            try
+            {
+               waitID = fetcher.createTaskID();
+            }
+            catch   
+            {
+               //logger.log("An error has occured in connecting to the database to create a task ID");
+            }
+
+            Task.Run(() => fetcher.fetchDataAsync(new SampleBusinessObject(),  waitID));
+            return waitID != -1 ? waitID.ToString() : "Our service is temporarily down, please try later.";
+        }
 
         public void Auth()
         {

@@ -34,6 +34,13 @@ namespace Sample.Infrastructure
             throw new NotImplementedException();
         }
 
+        public void fetchDataAsync(BusObjSuperclass s, int taskID)
+        {
+            String query = queryLookup(s);
+            MockDataClass DS = new MockDataClass();
+            DS.ProduceDataAsync(query, taskID);
+        }
+
 
         public void fetchData(BusObjSuperclass s)
         {
@@ -42,6 +49,12 @@ namespace Sample.Infrastructure
             String results = DS.ProduceDataSynchronous(query);
             //todo:  load object via publically available dictionary of loadable member fields or reflection on annotated members.
             ExportedValue = results;
+        }
+
+        /* todo: return next available ID in DB of running tasks w/ timestamps. */
+        public int createTaskID()
+        {
+            return 5;
         }
     }
 }
